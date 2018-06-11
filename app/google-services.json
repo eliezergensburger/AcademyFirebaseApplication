@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "601518308525",
+    "firebase_url": "https://academyfirebaseapplication.firebaseio.com",
+    "project_id": "academyfirebaseapplication",
+    "storage_bucket": "academyfirebaseapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601518308525:android:9d88352b7d6704f8",
+        "android_client_info": {
+          "package_name": "com.jct.oshri.academyfirebaseapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "601518308525-e2jr7rq6hho4dfu5kte2ia3139ett1bs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jct.oshri.academyfirebaseapplication",
+            "certificate_hash": "648c9d1c05ac785c0667e76aa1d0837c0414c982"
+          }
+        },
+        {
+          "client_id": "601518308525-r2405rqac2tce5tskmnqg80tq45lpkk7.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "601518308525-r2405rqac2tce5tskmnqg80tq45lpkk7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe1PzhWkWqIHCCm8I36Xa-DN63R4jMLq0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "601518308525-r2405rqac2tce5tskmnqg80tq45lpkk7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

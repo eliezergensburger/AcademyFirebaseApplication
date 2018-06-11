@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Academy Firebase Application</string>
+    <string name="id">id</string>
+    <string name="name">name</string>
+    <string name="phone">phone</string>
+    <string name="seniority">Seniority:</string>
+    <string name="add_lecturer">Add Lecturer</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="button">Button</string>
+</resources>
