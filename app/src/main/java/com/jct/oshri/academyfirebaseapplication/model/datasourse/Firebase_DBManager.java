@@ -23,7 +23,6 @@ import java.util.List;
 
 public class Firebase_DBManager {
 
-    private static ChildEventListener studentRefChildEventListener;
 
     public interface Action<T> {
         void onSuccess(T obj);
@@ -170,8 +169,9 @@ public class Firebase_DBManager {
         });
     }
 
+    private static ChildEventListener studentRefChildEventListener;
 
-    public static void NotifyToStudentList(final NotifyDataChange<List<Student>> notifyDataChange) {
+    public static void notifyToStudentList(final NotifyDataChange<List<Student>> notifyDataChange) {
         if (notifyDataChange != null) {
 
             if (studentRefChildEventListener != null) {
@@ -204,9 +204,7 @@ public class Firebase_DBManager {
                             studentList.set(i, student);
                             break;
                         }
-
                     }
-
                     notifyDataChange.OnDataChanged(studentList);
                 }
 
@@ -216,20 +214,17 @@ public class Firebase_DBManager {
                     Long id = Long.parseLong(dataSnapshot.getKey());
                     student.setId(id);
 
-
                     for (int i = 0; i < studentList.size(); i++) {
-                        if (studentList.get(i).getId() ==  id) {
+                        if (studentList.get(i).getId() == id) {
                             studentList.remove(i);
                             break;
                         }
                     }
-
                     notifyDataChange.OnDataChanged(studentList);
                 }
 
                 @Override
                 public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
                 }
 
                 @Override
@@ -238,14 +233,14 @@ public class Firebase_DBManager {
                 }
             };
             StudentsRef.addChildEventListener(studentRefChildEventListener);
-
         }
     }
 
-
-    public static void UNotifyToStudentList() {
+public static void stopNotifyToStudentList() {
+    if (studentRefChildEventListener != null) {
         StudentsRef.removeEventListener(studentRefChildEventListener);
         studentRefChildEventListener = null;
     }
+}
 
 }

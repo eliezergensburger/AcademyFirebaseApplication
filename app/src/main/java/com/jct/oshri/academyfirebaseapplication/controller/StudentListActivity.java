@@ -37,12 +37,11 @@ public class StudentListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_student);
 
-
         studentsRecycleView = findViewById(R.id.studentsRecycleView);
         studentsRecycleView.setHasFixedSize(true);
         studentsRecycleView.setLayoutManager(new LinearLayoutManager(this));
 
-        Firebase_DBManager.NotifyToStudentList(new Firebase_DBManager.NotifyDataChange<List<Student>>() {
+        Firebase_DBManager.notifyToStudentList(new Firebase_DBManager.NotifyDataChange<List<Student>>() {
             @Override
             public void OnDataChanged(List<Student> obj) {
                 if (studentsRecycleView.getAdapter() == null) {
@@ -57,37 +56,39 @@ public class StudentListActivity extends Activity {
                 Toast.makeText(getBaseContext(), "error to get students list\n" + exception.toString(), Toast.LENGTH_LONG).show();
             }
         });
-
     }
-
 
     @Override
     protected void onDestroy() {
-        Firebase_DBManager.UNotifyToStudentList();
+        Firebase_DBManager.stopNotifyToStudentList();
         super.onDestroy();
     }
+
 
     public class StudentsRecycleViewAdapter extends RecyclerView.Adapter<StudentsRecycleViewAdapter.StudentViewHolder> {
 
         @Override
-        public StudentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(getBaseContext()).inflate(R.layout.student_item_view, parent, false);
-            return new StudentViewHolder(v);
-        }
+public StudentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    View v = LayoutInflater.from(getBaseContext()).inflate(R.layout.student_item_view,
+            parent,
+            false);
+
+    return new StudentViewHolder(v);
+}
 
         @Override
-        public void onBindViewHolder(StudentViewHolder holder, int position) {
+public void onBindViewHolder(StudentViewHolder holder, int position) {
 
-            Student student = students.get(position);
-            holder.nameTextView.setText(student.getName());
-            holder.phoneTextView.setText(student.getPhone());
-            //Load the image using Glide
-            Glide.with(getBaseContext())
-                    .load(student.getImageFirebaseUrl())
-                    .centerCrop()
-                    .override(150, 150)
-                    .placeholder(R.mipmap.person)
-                    .into(holder.personImageView);
+    Student student = students.get(position);
+    holder.nameTextView.setText(student.getName());
+    holder.phoneTextView.setText(student.getPhone());
+    //Load the image using Glide
+    Glide.with(getBaseContext())
+            .load(student.getImageFirebaseUrl())
+            .centerCrop()
+            .override(150, 150)
+            .placeholder(R.mipmap.person)
+            .into(holder.personImageView);
 
 
 //            Glide.with(getBaseContext() /* context */)
@@ -98,33 +99,31 @@ public class StudentListActivity extends Activity {
 //                    .into(holder.personImageView);
 
 
-        }
+}
 
         @Override
         public int getItemCount() {
             return students.size();
         }
 
-        public class StudentViewHolder extends RecyclerView.ViewHolder {
 
-            CardView cv;
+        class StudentViewHolder extends RecyclerView.ViewHolder {
+
             TextView nameTextView;
             TextView phoneTextView;
             ImageView personImageView;
 
-
-            public StudentViewHolder(View itemView) {
+            StudentViewHolder(View itemView) {
                 super(itemView);
-                cv = itemView.findViewById(R.id.cv);
                 personImageView = itemView.findViewById(R.id.personImageView);
                 nameTextView = itemView.findViewById(R.id.nameTextView);
                 phoneTextView = itemView.findViewById(R.id.phoneTextView);
 
                 // itemView.setOnClickListener();
                 itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+
                     @Override
                     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-                        //   Toast.makeText(getBaseContext(),"OnCreateContextMenuListener",Toast.LENGTH_LONG).show();
                         menu.setHeaderTitle("Select Action");
 
                         MenuItem delete = menu.add(Menu.NONE, 1, 1, "Delete");
@@ -161,5 +160,5 @@ public class StudentListActivity extends Activity {
         }
     }
 
-
 }
+

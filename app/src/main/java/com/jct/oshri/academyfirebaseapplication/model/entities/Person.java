@@ -53,12 +53,12 @@ public class Person {
         this.imageLocalUri = imageLocalUri;
     }
 
-    public String getFireBaseLocalImageUri() {
-
-        return imageLocalUri.toString();
-    }
-    public void setFireBaseLocalImageUri(String value) {
-        this.imageLocalUri = Uri.parse(value);
-    }
+//    public String getFireBaseLocalImageUri() {
+//
+//        return imageLocalUri.toString();
+//    }
+//    public void setFireBaseLocalImageUri(String value) {
+//        this.imageLocalUri = Uri.parse(value);
+//    }
 
 }

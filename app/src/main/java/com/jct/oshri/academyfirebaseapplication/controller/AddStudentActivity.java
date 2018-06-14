@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -84,6 +85,18 @@ public class AddStudentActivity extends Activity implements View.OnClickListener
         }
     }
 
+private void resetView() {
+    new Handler().postDelayed(
+            new Runnable() {
+                @Override
+                public void run() {
+                    addStudentProgressBar.setProgress(0);
+                    addStudentButton.setEnabled(true);
+                }
+            },
+            1500);
+}
+
 
 private void addStudent() {
     try {
@@ -94,14 +107,14 @@ private void addStudent() {
         Firebase_DBManager.addStudent(student, new Firebase_DBManager.Action<Long>() {
             @Override
             public void onSuccess(Long obj) {
-                Toast.makeText(getBaseContext(), "insert id" + obj, Toast.LENGTH_LONG).show();
-                addStudentButton.setEnabled(true);
+                Toast.makeText(getBaseContext(), "insert id " + obj, Toast.LENGTH_LONG).show();
+                resetView();
             }
 
             @Override
             public void onFailure(Exception exception) {
                 Toast.makeText(getBaseContext(), "Error \n" + exception.getMessage(), Toast.LENGTH_LONG).show();
-                addStudentButton.setEnabled(true);
+                resetView();
             }
 
             @Override
@@ -113,7 +126,7 @@ private void addStudent() {
         });
     } catch (Exception e) {
         Toast.makeText(getBaseContext(), "Error ", Toast.LENGTH_LONG).show();
-        addStudentButton.setEnabled(true);
+        resetView();
     }
 }
 
